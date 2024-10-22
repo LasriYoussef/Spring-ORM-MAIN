@@ -1,0 +1,48 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>304</x><y>120</y><w>168</w><h>136</h></coordinates><panel_attributes>Client
+--
+- id: UUID
+- firstName: String
+- lastName: String
+- email: String
+- birthDate: LocalDate
+--
++ ctor
++ getters/setters
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>640</x><y>120</y><w>168</w><h>136</h></coordinates><panel_attributes>&lt;&lt;entity&gt;&gt;
+Client
+--
+- id: Long
+- creationTime: LocalDateTime
+- balance: BigDecimal
+--
++ ctor
++ getters/setters
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>464</x><y>176</y><w>192</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=1..1
+m2=0..*
+owns &gt;</panel_attributes><additional_attributes>10;20;220;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>16</x><y>120</y><w>168</w><h>104</h></coordinates><panel_attributes>BankAdvisor
+--
+- id: UUID
+- hiringDate : LocalDate
+- specialty: Specialty
+--
++ ctor
++ getters/setters
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>16</x><y>264</y><w>168</w><h>104</h></coordinates><panel_attributes>&lt;&lt;enumeration&gt;&gt;
+Specialty
+--
+Assurance
+Placement
+Prêt immobilier
+Crédit consommation
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>304</x><y>352</y><w>168</w><h>80</h></coordinates><panel_attributes>Insurance
+--
+- name : String
+--
++ ctor
++ getters/setters
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>376</x><y>248</y><w>80</w><h>120</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=0..*
+subscribes v</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element></diagram>
