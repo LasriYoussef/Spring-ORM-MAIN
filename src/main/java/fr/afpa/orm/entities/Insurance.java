@@ -1,49 +1,138 @@
-// package fr.afpa.orm.entities;
+package fr.afpa.orm.entities;
 
-// import java.util.ArrayList;
-// import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.UUID;
 
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
-// import jakarta.persistence.Id;
-// import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-// @Entity
-// public class Insurance {
-    
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long id;
+@Entity
+@Table(name = "insurance")
+public class Insurance {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-//     private String name;
+    @Column(name = "type", nullable = false)
+    private String type;  // Par exemple: "vie", "habitation", "automobile"
 
-//     @ManyToMany(mappedBy = "insurances")
-//     private List<Client> clients = new ArrayList<>();
+    @Column(name = "monthly_premium", nullable = false)
+    private BigDecimal monthlyPremium;
 
-//     public Long getId() {
-//         return id;
-//     }
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
 
-//     public String getName() {
-//         return name;
-//     }
+    @Column(name = "end_date")
+    private LocalDate endDate;
 
-//     public List<Client> getClients() {
-//         return clients;
-//     }
+    @Column(name = "coverage_amount", nullable = false)
+    private BigDecimal coverageAmount;
 
-//     public void setId(Long id) {
-//         this.id = id;
-//     }
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
-//     public void setName(String name) {
-//         this.name = name;
-//     }
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;  // Compte utilisé pour les prélèvements
 
-//     public void setClients(List<Client> clients) {
-//         this.clients = clients;
-//     }
+    // Constructeur par défaut
+    public Insurance() {
+    }
 
-   
-// }
+    // Constructeur avec paramètres
+    public Insurance(String type, BigDecimal monthlyPremium, LocalDate startDate, 
+                    BigDecimal coverageAmount, Client client) {
+        this.type = type;
+        this.monthlyPremium = monthlyPremium;
+        this.startDate = startDate;
+        this.coverageAmount = coverageAmount;
+        this.client = client;
+    }
+
+    // Getters et Setters
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public BigDecimal getMonthlyPremium() {
+        return monthlyPremium;
+    }
+
+    public void setMonthlyPremium(BigDecimal monthlyPremium) {
+        this.monthlyPremium = monthlyPremium;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public BigDecimal getCoverageAmount() {
+        return coverageAmount;
+    }
+
+    public void setCoverageAmount(BigDecimal coverageAmount) {
+        this.coverageAmount = coverageAmount;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    @Override
+    public String toString() {
+        return "Insurance{" +
+               "id=" + id +
+               ", type='" + type + '\'' +
+               ", monthlyPremium=" + monthlyPremium +
+               ", startDate=" + startDate +
+               ", endDate=" + endDate +
+               ", coverageAmount=" + coverageAmount +
+               ", clientId=" + (client != null ? client.getId() : null) +
+               ", accountId=" + (account != null ? account.getId() : null) +
+               '}';
+    }
+}

@@ -27,7 +27,7 @@ public class Account {
     private BigDecimal balance;
 
     @ManyToOne
-    @JoinColumn(name = "owner", nullable = false)
+    @JoinColumn(name = "client_id", nullable = false)
     private Client owner;
 
     // Constructeur vide obligatoire pour JPA
