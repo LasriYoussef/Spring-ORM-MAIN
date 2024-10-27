@@ -1,0 +1,15 @@
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/web/controllers/InsuranceRestController.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/AccountRestApiApp.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/repositories/ClientRepository.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/web/controllers/AccountRestController.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/dto/AccountDto.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/repositories/UserRepository.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/dto/ClientDto.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/entities/Client.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/repositories/InsuranceRepository.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/web/controllers/ClientRestController.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/entities/Account.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/repositories/AccountRepository.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/dto/InsuranceDto.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/entities/User.java
+/Users/utilisateur/Desktop/Projet-Codage-JAVA/spring-orm-main/src/main/java/fr/afpa/orm/entities/Insurance.java

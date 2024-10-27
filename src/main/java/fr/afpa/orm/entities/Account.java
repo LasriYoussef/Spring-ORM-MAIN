@@ -28,7 +28,7 @@ public class Account {
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
-    private Client owner;
+    private Client client;
 
     // Constructeur vide obligatoire pour JPA
     public Account() {
@@ -65,14 +65,14 @@ public class Account {
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
-
-    public Client getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Client client) {
-        this.owner = client;
-    }
+    
+        public Client getClient() {
+            return client;
+        }
+    
+        public void setClient(Client client) {
+            this.client = client;
+        }
 
     @Override
     public String toString() {
@@ -80,7 +80,8 @@ public class Account {
                "id=" + id +
                ", creationTime=" + creationTime +
                ", balance=" + balance +
-            //    ", clientId=" + (client != null ? client.getId() : null) +
+               ", clientId=" + (client != null ? client.getId() : null) +
                '}';
     }
+
 }

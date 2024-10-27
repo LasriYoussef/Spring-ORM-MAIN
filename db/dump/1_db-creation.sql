@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS public.client CASCADE;
-DROP TABLE IF EXISTS public.client CASCADE;
+DROP TABLE IF EXISTS public.account CASCADE;
+DROP TABLE IF EXISTS public.insurance CASCADE;
 
 CREATE TABLE client (
     id UUID PRIMARY KEY,
@@ -9,7 +10,13 @@ CREATE TABLE client (
     birth_date DATE NOT NULL
 );
 
-CREATE TABLE client (
+CREATE TABLE public.insurance (
+	insurance_id serial4 NOT NULL,
+	"name" varchar(100) NULL,
+    CONSTRAINT insurance_pkey PRIMARY KEY (insurance_id)
+);
+
+CREATE TABLE account (
     id SERIAL PRIMARY KEY,
     creation_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     balance BIGINT NOT NULL,
@@ -17,15 +24,10 @@ CREATE TABLE client (
     FOREIGN KEY (owner) REFERENCES client(id)
 );
 
-CREATE TABLE insurance (
-    id UUID PRIMARY KEY,
-    type VARCHAR(50) NOT NULL,
-    monthly_premium DECIMAL(10,2) NOT NULL,
-    start_date DATE NOT NULL,
-    end_date DATE,
-    coverage_amount DECIMAL(10,2) NOT NULL,
-    client_id UUID NOT NULL,
-    account_id BIGINT,
-    FOREIGN KEY (client_id) REFERENCES client(id),
-    FOREIGN KEY (account_id) REFERENCES account(id)
+CREATE TABLE client_insurance (
+    client_id UUID,
+    insurance_id serial4,
+    PRIMARY KEY (client_id, insurance_id),
+    CONSTRAINT fk_client FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE CASCADE,
+    CONSTRAINT fk_insurance FOREIGN KEY (insurance_id) REFERENCES insurance(insurance_id) ON DELETE CASCADE
 );

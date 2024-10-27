@@ -1,138 +1,73 @@
 package fr.afpa.orm.entities;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.UUID;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "insurance")
 public class Insurance {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
 
-    @Column(name = "type", nullable = false)
-    private String type;  // Par exemple: "vie", "habitation", "automobile"
-
-    @Column(name = "monthly_premium", nullable = false)
-    private BigDecimal monthlyPremium;
-
-    @Column(name = "start_date", nullable = false)
-    private LocalDate startDate;
-
-    @Column(name = "end_date")
-    private LocalDate endDate;
-
-    @Column(name = "coverage_amount", nullable = false)
-    private BigDecimal coverageAmount;
-
-    @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
-
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    private Account account;  // Compte utilisé pour les prélèvements
+    @JsonIgnoreProperties({"accounts", "insurances"})
+    @ManyToMany(targetEntity = Client.class)
+    @JoinTable(name = "client_insurance",
+            joinColumns = @JoinColumn(name = "insurance_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id"))
+    private List<Client> clients;  // Utiliser une liste car ManyToMany
 
     // Constructeur par défaut
     public Insurance() {
     }
 
     // Constructeur avec paramètres
-    public Insurance(String type, BigDecimal monthlyPremium, LocalDate startDate, 
-                    BigDecimal coverageAmount, Client client) {
-        this.type = type;
-        this.monthlyPremium = monthlyPremium;
-        this.startDate = startDate;
-        this.coverageAmount = coverageAmount;
-        this.client = client;
+    public Insurance(List<Client> clients) {  // Liste de clients
+        this.clients = clients;
     }
 
     // Getters et Setters
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public List<Client> getClients() {
+        return clients;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
     }
 
-    public BigDecimal getMonthlyPremium() {
-        return monthlyPremium;
+    public String getName() {
+        return name;
     }
 
-    public void setMonthlyPremium(BigDecimal monthlyPremium) {
-        this.monthlyPremium = monthlyPremium;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public BigDecimal getCoverageAmount() {
-        return coverageAmount;
-    }
-
-    public void setCoverageAmount(BigDecimal coverageAmount) {
-        this.coverageAmount = coverageAmount;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Insurance{" +
-               "id=" + id +
-               ", type='" + type + '\'' +
-               ", monthlyPremium=" + monthlyPremium +
-               ", startDate=" + startDate +
-               ", endDate=" + endDate +
-               ", coverageAmount=" + coverageAmount +
-               ", clientId=" + (client != null ? client.getId() : null) +
-               ", accountId=" + (account != null ? account.getId() : null) +
-               '}';
+        return "Insurance [id=" + id + ", name=" + name + ", clients=" + clients + "]";
     }
+
+    
+    
+
 }

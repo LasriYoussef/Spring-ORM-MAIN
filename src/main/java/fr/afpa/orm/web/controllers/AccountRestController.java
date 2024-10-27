@@ -84,7 +84,7 @@ public class AccountRestController {
                 account.getId(),
                 account.getBalance(),
                 account.getCreationTime(),
-                account.getOwner().getId()
+                account.getClient().getId()
         );
     }
 }

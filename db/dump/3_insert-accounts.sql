@@ -1,9 +1,9 @@
-CREATE OR REPLACE PROCEDURE create_clients()
+CREATE OR REPLACE PROCEDURE create_account()
 LANGUAGE plpgsql
 AS $$
 BEGIN
     FOR i IN 1..200 LOOP
-        INSERT INTO public.client (creation_time, balance, owner)
+        INSERT INTO public.account (creation_time, balance, owner)
         VALUES (
             current_timestamp,
             1000 * i,
@@ -13,4 +13,4 @@ BEGIN
 END;
 $$;
 
-CALL create_clients();
+CALL create_account();
